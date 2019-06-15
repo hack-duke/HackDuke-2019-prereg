@@ -45,7 +45,7 @@ const Form = () => {
         primary={true}
         type="submit"
         fill="horizontal"
-        margin={{ vertical: 'small' }}
+        margin={{ top: 'small' }}
       />
     </>
   );
