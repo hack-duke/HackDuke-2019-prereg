@@ -5,24 +5,28 @@ import HackDukeLogo from './hackduke-logo-2019.png';
 import Form from './Form.jsx';
 
 const desktopOnly = rules => css`
-  @media screen and (min-width: 960px) {
+  @media screen and (min-width: 768px) {
     ${rules}
   }
 `;
 
-const LogoImage = styled.div`
-  flex: 1;
-  background-image: url(${HackDukeLogo});
-  height: 100%;
-  min-height: 180px;
+const LogoWrapper = styled.div`
+  display: flex;
+  justify-content: flex-end;
+
+  ${desktopOnly(css`
+    flex: 1;
+  `)}
+`;
+
+const LogoImage = styled.img`
+  max-width: 400px;
+  height: auto;
   width: 100%;
-  background-size: contain;
-  background-position: center;
-  background-repeat: no-repeat;
+  margin: auto;
 `;
 
 const FormOuter = styled.div`
-  flex: 1;
   background: white;
   border-radius: 8px;
   padding: 24px;
@@ -31,6 +35,7 @@ const FormOuter = styled.div`
   width: 100%;
 
   ${desktopOnly(css`
+    flex: 1;
     margin-left: 40px;
     margin-top: 0;
   `)}
@@ -41,6 +46,7 @@ const Container = styled.div`
   width: 100%;
   display: flex;
   flex-direction: column;
+  justify-content: center;
   align-items: center;
   max-width: 1024px;
   margin: 0 auto;
@@ -54,7 +60,9 @@ const Container = styled.div`
 
 const App = () => (
   <Container>
-    <LogoImage />
+    <LogoWrapper>
+      <LogoImage src={HackDukeLogo} alt="HackDuke Logo" />
+    </LogoWrapper>
     <FormOuter>
       <Form />
     </FormOuter>
