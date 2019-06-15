@@ -1,14 +1,15 @@
-import React from "react";
-import ReactDom from "react-dom";
+import React from 'react';
+import ReactDom from 'react-dom';
 
-import "./app.css";
-import styled, { css } from "styled-components";
-import HackDukeLogo from "./hackduke-logo-2019.png";
-import Form from "./Form.jsx";
+import './app.css';
+import styled, { css } from 'styled-components';
+import HackDukeLogo from './hackduke-logo-2019.png';
+import Form from './Form.jsx';
 
-const mobileOnly = rules => css`
+const desktopOnly = rules => css`
   @media screen and (min-width: 960px) {
-    {rules}
+    ${rules}
+  }
 `;
 
 const LogoImage = styled.div`
@@ -31,10 +32,10 @@ const FormOuter = styled.div`
   box-shadow: 0px 20px 40px rgba(0, 0, 0, 0.05);
   width: 100%;
 
-  @media screen and (min-width: 960px) {
+  ${desktopOnly(css`
     margin-left: 40px;
     margin-top: 0;
-  }
+  `)}
 `;
 
 const Container = styled.div`
@@ -45,11 +46,11 @@ const Container = styled.div`
   max-width: 1024px;
   margin: 0 auto;
 
-  @media screen and (min-width: 960px) {
+  ${desktopOnly(css`
     padding: 40px;
     height: 100%;
     flex-direction: row;
-  }
+  `)}
 `;
 
 function App() {
@@ -63,5 +64,5 @@ function App() {
   );
 }
 
-const rootElement = document.getElementById("root");
+const rootElement = document.getElementById('root');
 ReactDom.render(<App />, rootElement);
