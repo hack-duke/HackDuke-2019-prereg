@@ -3,6 +3,23 @@ import { FormField, TextInput, Button } from 'grommet';
 import { validate } from 'email-validator';
 import { getUniversitySuggestions, isUniversity } from './university-util.js';
 import { useDebounce } from 'use-debounce';
+import styled, { css } from 'styled-components';
+import { desktopOnly } from './utils.jsx';
+
+const FormOuter = styled.div`
+  background: white;
+  border-radius: 6px;
+  padding: 24px;
+  margin-top: 40px;
+  box-shadow: 0px 20px 40px rgba(0, 0, 0, 0.05);
+  width: 100%;
+
+  ${desktopOnly(css`
+    flex: 1;
+    margin-left: 40px;
+    margin-top: 0;
+  `)}
+`;
 
 const Form = () => {
   const [name, setName] = useState('');
@@ -12,7 +29,7 @@ const Form = () => {
   const isValid = name.length >= 3 && validate(email) && isUniversity(school);
 
   return (
-    <>
+    <FormOuter>
       <FormField label="Name">
         <TextInput
           placeholder="First Last"
@@ -47,7 +64,7 @@ const Form = () => {
         fill="horizontal"
         margin={{ top: 'small' }}
       />
-    </>
+    </FormOuter>
   );
 };
 
