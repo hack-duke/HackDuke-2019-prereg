@@ -1,10 +1,26 @@
 import React from 'react';
 import ReactDom from 'react-dom';
 
-import './app.css';
-import styled, { css } from 'styled-components';
+import styled, { css, createGlobalStyle } from 'styled-components';
 import HackDukeLogo from './hackduke-logo-2019.png';
 import Form from './Form.jsx';
+
+const GlobalStyle = createGlobalStyle`
+html {
+    box-sizing: border-box;
+}
+
+*,
+*:before,
+*:after {
+    box-sizing: inherit;
+}
+
+body {
+    font-family: 'Open Sans', sans-serif;
+    background: #a1c99b;
+}
+`;
 
 const desktopOnly = rules => css`
   @media screen and (min-width: 960px) {
@@ -53,16 +69,17 @@ const Container = styled.div`
   `)}
 `;
 
-function App() {
-  return (
+const App = () => (
+  <>
+    <GlobalStyle />
     <Container>
       <LogoImage />
       <FormOuter>
         <Form />
       </FormOuter>
     </Container>
-  );
-}
+  </>
+);
 
 const rootElement = document.getElementById('root');
 ReactDom.render(<App />, rootElement);
