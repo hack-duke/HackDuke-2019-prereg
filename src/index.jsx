@@ -19,6 +19,11 @@ html {
 body {
     font-family: 'Open Sans', sans-serif;
     background: #a1c99b;
+    margin: 0;
+}
+
+html, body, #root {
+  height: 100%;
 }
 `;
 
@@ -56,6 +61,7 @@ const FormOuter = styled.div`
 
 const Container = styled.div`
   display: flex;
+  flex: 1;
   flex-direction: column;
   padding: 32px 24px;
   align-items: center;
