@@ -2,11 +2,13 @@ import React, { useState, useMemo } from 'react';
 import { FormField, TextInput, Button } from 'grommet';
 import { validate } from 'email-validator';
 import { getUniversitySuggestions, isUniversity } from './university-util.js';
+import { useDebounce } from 'use-debounce';
 
 const Form = () => {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [school, setSchool] = useState('');
+  const [debouncedSchool] = useDebounce(school, 50, { maxWait: 250 });
   const isValid = name.length >= 3 && validate(email) && isUniversity(school);
 
   return (
@@ -28,9 +30,10 @@ const Form = () => {
       <FormField label="School">
         <TextInput
           placeholder="Duke University"
-          suggestions={useMemo(() => getUniversitySuggestions(school), [
-            school
-          ])}
+          suggestions={useMemo(
+            () => getUniversitySuggestions(debouncedSchool),
+            [debouncedSchool]
+          )}
           value={school}
           onChange={e => setSchool(e.target.value)}
           onSelect={e => setSchool(e.suggestion)}
