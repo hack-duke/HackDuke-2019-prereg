@@ -17,6 +17,7 @@
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
     "styled-components": "^4.2.1",
+    "typography": "^0.16.19",
     "use-debounce": "^2.1.0"
   },
   "devDependencies": {

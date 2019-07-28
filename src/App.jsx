@@ -9,14 +9,13 @@ import { desktopOnly } from "./utils.jsx";
 const LogoOuter = styled.div`
   display: flex;
   justify-content: flex-end;
-
   ${desktopOnly(css`
     flex: 1;
   `)}
 `;
 
 const LogoImage = styled.img`
-  max-width: 400px;
+  max-width: 350px;
   height: auto;
   width: 100%;
   margin: auto;

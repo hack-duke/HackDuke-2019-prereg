@@ -2,6 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './App.jsx';
 import { createGlobalStyle } from 'styled-components';
+import Typography from 'typography';
 
 const GlobalStyle = createGlobalStyle`
 html {
@@ -16,7 +17,7 @@ html {
 
 body {
     font-family: 'Open Sans', sans-serif;
-    background: #a1c99b;
+    background: #FECA7D;
     margin: 0;
 }
 
