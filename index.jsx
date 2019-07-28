@@ -5,7 +5,7 @@ import "./app.css";
 import styled, { css } from "styled-components";
 import HackDukeLogo from "./hackduke-logo-2019.png";
 import Form from "./Form.jsx";
-
+import TrustBadgeImage from "./mlh-logo.svg";
 const mobileOnly = rules => css`
   @media screen and (min-width: 960px) {
     {rules}
@@ -22,6 +22,23 @@ const LogoImage = styled.div`
   background-repeat: no-repeat;
 `;
 
+const MLHBadge = styled.div`
+  flex: 1;
+  background-image: url(${TrustBadgeImage});
+  height: 20%;
+  min-height: 180px;
+  width: 100%;
+  background-size: contain;
+  background-position: right;
+  background-repeat: no-repeat;
+  margin-right: 0px;
+`;
+const NavItemsWrapper = styled.div`
+  margin: 0 auto;
+  padding: 0 0px;
+  padding-right: 0;
+  height: 0%;
+`;
 const FormOuter = styled.div`
   flex: 1;
   background: white;
@@ -54,12 +71,24 @@ const Container = styled.div`
 
 function App() {
   return (
-    <Container>
-      <LogoImage />
-      <FormOuter>
-        <Form />
-      </FormOuter>
-    </Container>
+    <div>
+      <NavItemsWrapper>
+        <a
+          href="https://mlh.io/seasons/na-2019/events?utm_source=na-hackathon&utm_medium=TrustBadge&utm_campaign=2019-season&utm_content=white"
+          target="_blank"
+          // rel="noopener"
+        >
+          <MLHBadge />
+        </a>
+      </NavItemsWrapper>
+      <Container>
+        <LogoImage />
+
+        <FormOuter>
+          <Form />
+        </FormOuter>
+      </Container>
+    </div>
   );
 }
 
