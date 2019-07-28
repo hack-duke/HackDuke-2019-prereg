@@ -1,10 +1,10 @@
-import React, { useState, useMemo } from 'react';
-import { FormField, TextInput, Button } from 'grommet';
-import { validate } from 'email-validator';
-import { getUniversitySuggestions, isUniversity } from './university-util.js';
-import { useDebounce } from 'use-debounce';
-import styled, { css } from 'styled-components';
-import { desktopOnly } from './utils.jsx';
+import React, { useState, useMemo } from "react";
+import { FormField, TextInput, Button } from "grommet";
+import { validate } from "email-validator";
+import { getUniversitySuggestions, isUniversity } from "./university-util.js";
+import { useDebounce } from "use-debounce";
+import styled, { css } from "styled-components";
+import { desktopOnly } from "./utils.jsx";
 
 const FormOuter = styled.div`
   background: white;
@@ -22,9 +22,9 @@ const FormOuter = styled.div`
 `;
 
 const Form = () => {
-  const [name, setName] = useState('');
-  const [email, setEmail] = useState('');
-  const [school, setSchool] = useState('');
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [school, setSchool] = useState("");
   const [debouncedSchool] = useDebounce(school, 50, { maxWait: 250 });
   const isValid = name.length >= 3 && validate(email) && isUniversity(school);
 
@@ -62,7 +62,7 @@ const Form = () => {
         primary={true}
         type="submit"
         fill="horizontal"
-        margin={{ top: 'small' }}
+        margin={{ top: "small" }}
       />
     </FormOuter>
   );
