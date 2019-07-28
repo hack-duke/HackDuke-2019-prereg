@@ -32,21 +32,21 @@ const Form = () => {
   return (
     <div>
       <FormOuter>
-        <FormField label="Name">
+        <FormField label="Name 🏷">
           <TextInput
             placeholder="First Last"
             value={name}
             onChange={e => setName(e.target.value)}
           />
         </FormField>
-        <FormField label="Email">
+        <FormField label="Email 📧">
           <TextInput
             placeholder="me@example.com"
             value={email}
             onChange={e => setEmail(e.target.value)}
           />
         </FormField>
-        <FormField label="School">
+        <FormField label="School 🏫">
           <TextInput
             placeholder="Duke University"
             suggestions={useMemo(
@@ -69,6 +69,7 @@ const Form = () => {
         fill="horizontal"
         margin={{ top: 'small' }}
         color="#5052FF"
+        style={{ padding: 10, borderRadius: 12}}
       />
     </div>
 
