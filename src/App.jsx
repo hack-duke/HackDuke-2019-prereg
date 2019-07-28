@@ -1,21 +1,21 @@
 import React from 'react';
 
 import styled, { css } from 'styled-components';
-import HackDukeLogo from './hackduke-logo-2019.png';
+import HackDukeLogo from './hourglass2.png';
 import Form from './Form.jsx';
+import Header from './Header.jsx'
 import { desktopOnly } from './utils.jsx';
 
 const LogoOuter = styled.div`
   display: flex;
   justify-content: flex-end;
-
   ${desktopOnly(css`
     flex: 1;
   `)}
 `;
 
 const LogoImage = styled.img`
-  max-width: 400px;
+  max-width: 350px;
   height: auto;
   width: 100%;
   margin: auto;
@@ -43,7 +43,11 @@ const App = () => (
     <LogoOuter>
       <LogoImage src={HackDukeLogo} alt="HackDuke Logo" />
     </LogoOuter>
-    <Form />
+    <div>
+      <Header />
+      <Form />
+    </div>
+
   </Container>
 );
 

@@ -16,10 +16,11 @@ const FormOuter = styled.div`
 
   ${desktopOnly(css`
     flex: 1;
-    margin-left: 40px;
+    margin-left: 0px;
     margin-top: 0;
   `)}
 `;
+
 
 const Form = () => {
   const [name, setName] = useState('');
@@ -29,42 +30,48 @@ const Form = () => {
   const isValid = name.length >= 3 && validate(email) && isUniversity(school);
 
   return (
-    <FormOuter>
-      <FormField label="Name">
-        <TextInput
-          placeholder="First Last"
-          value={name}
-          onChange={e => setName(e.target.value)}
-        />
-      </FormField>
-      <FormField label="Email">
-        <TextInput
-          placeholder="me@example.com"
-          value={email}
-          onChange={e => setEmail(e.target.value)}
-        />
-      </FormField>
-      <FormField label="School">
-        <TextInput
-          placeholder="Duke University"
-          suggestions={useMemo(
-            () => getUniversitySuggestions(debouncedSchool),
-            [debouncedSchool]
-          )}
-          value={school}
-          onChange={e => setSchool(e.target.value)}
-          onSelect={e => setSchool(e.suggestion)}
-        />
-      </FormField>
+    <div>
+      <FormOuter>
+        <FormField label="Name">
+          <TextInput
+            placeholder="First Last"
+            value={name}
+            onChange={e => setName(e.target.value)}
+          />
+        </FormField>
+        <FormField label="Email">
+          <TextInput
+            placeholder="me@example.com"
+            value={email}
+            onChange={e => setEmail(e.target.value)}
+          />
+        </FormField>
+        <FormField label="School">
+          <TextInput
+            placeholder="Duke University"
+            suggestions={useMemo(
+              () => getUniversitySuggestions(debouncedSchool),
+              [debouncedSchool]
+            )}
+            value={school}
+            onChange={e => setSchool(e.target.value)}
+            onSelect={e => setSchool(e.suggestion)}
+          />
+        </FormField>
+
+      </FormOuter>
+
       <Button
         disabled={!isValid}
-        label="Submit"
+        label="NOTIFY ME"
         primary={true}
         type="submit"
         fill="horizontal"
         margin={{ top: 'small' }}
+        color="#5052FF"
       />
-    </FormOuter>
+    </div>
+
   );
 };
 
