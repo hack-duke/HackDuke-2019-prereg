@@ -10,6 +10,7 @@ const LogoOuter = styled.div`
   float: left
   position: relative
   height: 95%;
+  left: -20%
   top: -120px
 
   ${desktopOnly(css`
@@ -53,10 +54,14 @@ const MLHWrapper = styled.div`
   top: 0px
   bottom: 0px
   margin: 0 0px;
-  padding-left: 90%
+  padding-left: 70%
   padding-right: 0;
   width: 5%
   height: 0%;
+
+  ${desktopOnly(css`
+    padding-left: 90%;
+  `)};
 `;
 
 const Container = styled.div`
