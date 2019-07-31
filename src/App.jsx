@@ -1,33 +1,39 @@
-import React from "react";
-import Header from "./Header.jsx";
-import styled, { css } from "styled-components";
-import HackDukeLogo from "./hourglass.png";
-import Form from "./Form.jsx";
-import TrustBadgeImage from "./mlh-trust-badge-2020-white.svg";
-import { desktopOnly } from "./utils.jsx";
+import React from 'react';
+import Header from './Header.jsx';
+import styled, { css } from 'styled-components';
+import HackDukeLogo from './hourglass.png';
+import Form from './Form.jsx';
+import TrustBadgeImage from './mlh-trust-badge-2020-white.svg';
+import { desktopOnly } from './utils.jsx';
 
 const LogoOuter = styled.div`
-  display: flex;
-  justify-content: flex-end;
-  height: auto;
-  margin: 0px, 20px;
+  float: left
+  position: relative
+  height: 95%;
+  top: -120px
+
   ${desktopOnly(css`
     flex: 1;
+    left: 10%
+
+    margin-right: -30%;
+
+    padding: 30px;
   `)}
 `;
 
 const LogoImage = styled.img`
-  max-width: 300px;
-  height: 100%;
-  width: 100%;
+  width: 50%;
+  height: 300px;
+  width: auto;
   position: absolute;
-  margin: 0px, 20px;
-  display: none;
   /* top: 5%;
   right: 60%; */
+
   ${desktopOnly(css`
+    height: 500px;
     display: block;
-  `)}
+  `)};
 `;
 const MLHBadge = styled.img`
   flex: 1;
@@ -73,15 +79,16 @@ const Container = styled.div`
 
 const HeaderFormOuter = styled.div`
   position: absolute
-  top: 10%
+  top: 500px
   padding: 0px;
-  margin-left: 20%;
-  margin-top: 0px;
+
   width: 80%
 
   ${desktopOnly(css`
     flex: 1;
-    width: 20%
+    right: 15%
+    width: 40%
+    top: 100px
     margin-top: 0;
   `)}
 `;
@@ -103,6 +110,7 @@ const App = () => (
       </LogoOuter>
       <HeaderFormOuter>
         <Header />
+
         <Form />
       </HeaderFormOuter>
     </Container>
