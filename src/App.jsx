@@ -1,24 +1,33 @@
 import React from "react";
-
+import Header from "./Header.jsx";
 import styled, { css } from "styled-components";
-import HackDukeLogo from "./hackduke-logo-2019.png";
+import HackDukeLogo from "./hourglass.png";
 import Form from "./Form.jsx";
-import TrustBadgeImage from "./mlh-badge.png";
+import TrustBadgeImage from "./mlh-trust-badge-2020-white.svg";
 import { desktopOnly } from "./utils.jsx";
 
 const LogoOuter = styled.div`
   display: flex;
   justify-content: flex-end;
+  height: auto;
+  margin: 0px, 20px;
   ${desktopOnly(css`
     flex: 1;
   `)}
 `;
 
 const LogoImage = styled.img`
-  max-width: 350px;
-  height: auto;
+  max-width: 300px;
+  height: 100%;
   width: 100%;
-  margin: auto;
+  position: absolute;
+  margin: 0px, 20px;
+  display: none;
+  /* top: 5%;
+  right: 60%; */
+  ${desktopOnly(css`
+    display: block;
+  `)}
 `;
 const MLHBadge = styled.img`
   flex: 1;
@@ -34,15 +43,18 @@ const MLHBadge = styled.img`
 `;
 
 const MLHWrapper = styled.div`
+  float:left
   top: 0px
+  bottom: 0px
   margin: 0 0px;
   padding-left: 90%
-  left:100%
   padding-right: 0;
+  width: 5%
   height: 0%;
 `;
 
 const Container = styled.div`
+  float: left
   height: 100%;
   width: 100%;
   display: flex;
@@ -51,11 +63,26 @@ const Container = styled.div`
   align-items: center;
   max-width: 1024px;
   margin: 0 auto;
-  padding: 24px;
+  padding: 0px;
 
   ${desktopOnly(css`
-    padding: 40px;
+    padding: 0px;
     flex-direction: row;
+  `)}
+`;
+
+const HeaderFormOuter = styled.div`
+  position: absolute
+  top: 10%
+  padding: 0px;
+  margin-left: 20%;
+  margin-top: 0px;
+  width: 80%
+
+  ${desktopOnly(css`
+    flex: 1;
+    width: 20%
+    margin-top: 0;
   `)}
 `;
 
@@ -74,7 +101,10 @@ const App = () => (
       <LogoOuter>
         <LogoImage src={HackDukeLogo} alt="HackDuke Logo" />
       </LogoOuter>
-      <Form />
+      <HeaderFormOuter>
+        <Header />
+        <Form />
+      </HeaderFormOuter>
     </Container>
   </div>
 );
