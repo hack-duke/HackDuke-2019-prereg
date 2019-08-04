@@ -11,33 +11,32 @@ const LogoOuter = styled.div`
   position: relative
   height: 95%;
   left: -20%
-  top: -120px
+  top: 40px
 
   ${desktopOnly(css`
     flex: 1;
     left: 10%
 
     margin-right: -30%;
-
+    top: -100px
     padding: 30px;
   `)}
 `;
 
 const LogoImage = styled.img`
   width: 50%;
-  height: 300px;
+  height: 350px;
   width: auto;
   position: absolute;
-  /* top: 5%;
-  right: 60%; */
 
   ${desktopOnly(css`
-    height: 500px;
+    height: 600px;
     display: block;
   `)};
 `;
 const MLHBadge = styled.img`
   flex: 1;
+
   height: 5%;
   min-height: 180px;
   width: 100px
@@ -47,10 +46,12 @@ const MLHBadge = styled.img`
   margin-right: 0px;
   margin-top: 0px;
   padding: 0 0px;
+
 `;
 
 const MLHWrapper = styled.div`
   float:left
+  display: none
   top: 0px
   bottom: 0px
   margin: 0 0px;
@@ -60,7 +61,9 @@ const MLHWrapper = styled.div`
   height: 0%;
 
   ${desktopOnly(css`
+    display: block
     padding-left: 90%;
+    float: left;
   `)};
 `;
 
@@ -84,7 +87,7 @@ const Container = styled.div`
 
 const HeaderFormOuter = styled.div`
   position: absolute
-  top: 500px
+  top: 400px
   padding: 0px;
 
   width: 80%
@@ -104,7 +107,6 @@ const App = () => (
       <a
         href="https://mlh.io/seasons/na-2019/events?utm_source=na-hackathon&utm_medium=TrustBadge&utm_campaign=2019-season&utm_content=white"
         target="_blank"
-        // rel="noopener"
       >
         <MLHBadge src={TrustBadgeImage} alt="mlh badge" />
       </a>
@@ -115,7 +117,6 @@ const App = () => (
       </LogoOuter>
       <HeaderFormOuter>
         <Header />
-
         <Form />
       </HeaderFormOuter>
     </Container>

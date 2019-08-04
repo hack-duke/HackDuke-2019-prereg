@@ -1,16 +1,16 @@
-import React, { useState, useMemo } from "react";
-import { FormField, TextInput, Button } from "grommet";
+import React, { useState, useMemo } from 'react';
+import { FormField, TextInput, Button } from 'grommet';
 
-import { validate } from "email-validator";
-import { getUniversitySuggestions, isUniversity } from "./university-util.js";
-import { useDebounce } from "use-debounce";
-import styled, { css } from "styled-components";
-import { desktopOnly } from "./utils.jsx";
+import { validate } from 'email-validator';
+import { getUniversitySuggestions, isUniversity } from './university-util.js';
+import { useDebounce } from 'use-debounce';
+import styled, { css } from 'styled-components';
+import { desktopOnly } from './utils.jsx';
 
 const FormOuter = styled.div`
   background: white;
-  border-radius: 0px;
-  padding: 0px;
+  border-radius: 20px;
+  padding: 10px;
   margin-top: 0%;
   box-shadow: 0px 20px 40px rgba(0, 0, 0, 0.05);
   width: 100%;
@@ -23,9 +23,9 @@ const FormOuter = styled.div`
 `;
 
 const Form = () => {
-  const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
-  const [school, setSchool] = useState("");
+  const [name, setName] = useState('');
+  const [email, setEmail] = useState('');
+  const [school, setSchool] = useState('');
   const [debouncedSchool] = useDebounce(school, 50, { maxWait: 250 });
   const isValid = name.length >= 3 && validate(email) && isUniversity(school);
 
@@ -66,7 +66,7 @@ const Form = () => {
         primary={true}
         type="submit"
         fill="horizontal"
-        margin={{ top: "small" }}
+        margin={{ top: 'small' }}
         color="#5052FF"
       />
     </div>
