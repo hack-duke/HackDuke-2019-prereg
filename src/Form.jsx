@@ -20,7 +20,7 @@ const Form = () => {
       <Paragraph size="large" margin={{ bottom: 'medium' }}>
         November 2-3rd, 2019
       </Paragraph>
-      <Box background="white" pad="small" round="medium" responsive={false} elevation="medium">
+      <Box background="white" pad="medium" round="small" responsive={false} elevation="medium">
         <FormField label="Name">
           <TextInput
             placeholder="First Last"

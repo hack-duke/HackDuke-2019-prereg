@@ -34,7 +34,16 @@ const HourglassImage = styled.img.attrs({ src: hourglass2 })`
 `;
 
 const App = () => (
-  <Grommet full>
+  <Grommet
+    full
+    theme={{
+      global: {
+        edgeSize: { medium: '18px' },
+        colors: { focus: '#5356fe', brand: '#5356fe' }
+      },
+      button: { padding: { vertical: '8px' }, border: { radius: '8px' } }
+    }}
+  >
     <MLHBadge />
     <Container>
       <HourglassImage />
