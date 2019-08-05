@@ -8,27 +8,39 @@ import hourglass2 from './hourglass2.png';
 const Container = styled.div`
   padding: 36px;
   display: flex;
-  height: 100%;
-  justify-content: space-between;
-  align-items: center;
+  min-height: 100%;
   max-width: 780px;
   margin: 0 auto;
+  flex-direction: column;
+  align-items: center;
+
+  ${desktopOnly(css`
+    justify-content: space-between;
+    flex-direction: row;
+  `)}
 `;
 
 const HourglassImage = styled.img.attrs({ src: hourglass2 })`
+  margin-bottom: 32px;
+  max-width: 144px;
+
+  ${desktopOnly(css`
+  margin-right: 80px;  
   max-height: 540px;
-  margin-right: 64px;
+  max-width: initial;
+  margin-bottom: 0;
+`)}
 `;
 
 const App = () => (
   <>
-      <MLHBadge />
+    <MLHBadge />
 
-  <Container>
-    <HourglassImage/>
-    <Form />
-  </Container>
-</>
+    <Container>
+      <HourglassImage />
+      <Form />
+    </Container>
+  </>
 );
 
 export default App;
