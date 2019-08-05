@@ -32,6 +32,7 @@ const Form = () => {
           <TextInput
             placeholder="me@example.com"
             value={email}
+            type="email"
             onChange={e => setEmail(e.target.value)}
           />
         </FormField>
