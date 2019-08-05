@@ -1,25 +1,8 @@
-import React, { useState, useMemo } from 'react';
-import { FormField, TextInput, Button } from 'grommet';
 import { validate } from 'email-validator';
-import { getUniversitySuggestions, isUniversity } from './university-util.js';
+import { Box, Button, FormField, Heading, Paragraph, TextInput } from 'grommet';
+import React, { useMemo, useState } from 'react';
 import { useDebounce } from 'use-debounce';
-import styled, { css } from 'styled-components';
-import { desktopOnly } from './utils.jsx';
-
-const FormOuter = styled.div`
-  background: white;
-  border-radius: 6px;
-  padding: 24px;
-  margin-top: 40px;
-  box-shadow: 0px 20px 40px rgba(0, 0, 0, 0.05);
-  width: 100%;
-
-  ${desktopOnly(css`
-    flex: 1;
-    margin-left: 40px;
-    margin-top: 0;
-  `)}
-`;
+import { getUniversitySuggestions, isUniversity } from './university-util.js';
 
 const Form = () => {
   const [name, setName] = useState('');
@@ -29,42 +12,52 @@ const Form = () => {
   const isValid = name.length >= 3 && validate(email) && isUniversity(school);
 
   return (
-    <FormOuter>
-      <FormField label="Name">
-        <TextInput
-          placeholder="First Last"
-          value={name}
-          onChange={e => setName(e.target.value)}
+    <Box>
+      <Heading level={1} size="large" margin={{ bottom: 'small' }}>
+        HackDuke
+      </Heading>
+      <Paragraph size="large">Code for Good with us in Durham, NC</Paragraph>
+      <Paragraph size="large" margin={{ bottom: 'medium' }}>
+        November 2-3rd, 2019
+      </Paragraph>
+      <Box background="white" pad="medium" round="small" responsive={false} elevation="medium">
+        <FormField label="Name">
+          <TextInput
+            placeholder="First Last"
+            value={name}
+            onChange={e => setName(e.target.value)}
+          />
+        </FormField>
+        <FormField label="Email">
+          <TextInput
+            placeholder="me@example.com"
+            value={email}
+            onChange={e => setEmail(e.target.value)}
+          />
+        </FormField>
+        <FormField label="School">
+          <TextInput
+            placeholder="Duke University"
+            suggestions={useMemo(
+              () => getUniversitySuggestions(debouncedSchool),
+              [debouncedSchool]
+            )}
+            value={school}
+            onChange={e => setSchool(e.target.value)}
+            onSelect={e => setSchool(e.suggestion)}
+          />
+        </FormField>
+        <Button
+          disabled={!isValid}
+          label="NOTIFY ME"
+          primary={true}
+          type="submit"
+          fill="horizontal"
+          margin={{ top: 'small' }}
+          color="#5052FF"
         />
-      </FormField>
-      <FormField label="Email">
-        <TextInput
-          placeholder="me@example.com"
-          value={email}
-          onChange={e => setEmail(e.target.value)}
-        />
-      </FormField>
-      <FormField label="School">
-        <TextInput
-          placeholder="Duke University"
-          suggestions={useMemo(
-            () => getUniversitySuggestions(debouncedSchool),
-            [debouncedSchool]
-          )}
-          value={school}
-          onChange={e => setSchool(e.target.value)}
-          onSelect={e => setSchool(e.suggestion)}
-        />
-      </FormField>
-      <Button
-        disabled={!isValid}
-        label="Submit"
-        primary={true}
-        type="submit"
-        fill="horizontal"
-        margin={{ top: 'small' }}
-      />
-    </FormOuter>
+      </Box>
+    </Box>
   );
 };
 

@@ -1,50 +1,55 @@
 import React from 'react';
-
 import styled, { css } from 'styled-components';
-import HackDukeLogo from './hackduke-logo-2019.png';
 import Form from './Form.jsx';
-import { desktopOnly } from './utils.jsx';
-
-const LogoOuter = styled.div`
-  display: flex;
-  justify-content: flex-end;
-
-  ${desktopOnly(css`
-    flex: 1;
-  `)}
-`;
-
-const LogoImage = styled.img`
-  max-width: 400px;
-  height: auto;
-  width: 100%;
-  margin: auto;
-`;
+import { MLHBadge } from './MLHBadge';
+import { desktopCss } from './utils.jsx';
+import hourglass2 from './hourglass2.png';
+import { Grommet } from 'grommet';
 
 const Container = styled.div`
-  height: 100%;
-  width: 100%;
+  padding: 36px;
   display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  max-width: 1024px;
+  min-height: 100%;
+  max-width: 800px;
   margin: 0 auto;
-  padding: 24px;
+  flex-direction: column;
+  align-items: center;
 
-  ${desktopOnly(css`
-    padding: 40px;
+  ${desktopCss`
+    justify-content: space-between;
     flex-direction: row;
-  `)}
+  `}
+`;
+
+const HourglassImage = styled.img.attrs({ src: hourglass2 })`
+  margin-bottom: 32px;
+  max-width: 144px;
+
+  ${desktopCss`
+    margin-right: 68px;
+    max-height: 550px;
+    max-width: initial;
+    margin-bottom: 0;
+  `}
 `;
 
 const App = () => (
-  <Container>
-    <LogoOuter>
-      <LogoImage src={HackDukeLogo} alt="HackDuke Logo" />
-    </LogoOuter>
-    <Form />
-  </Container>
+  <Grommet
+    full
+    theme={{
+      global: {
+        edgeSize: { medium: '18px' },
+        colors: { focus: '#5356fe', brand: '#5356fe' }
+      },
+      button: { padding: { vertical: '8px' }, border: { radius: '8px' } }
+    }}
+  >
+    <MLHBadge />
+    <Container>
+      <HourglassImage />
+      <Form />
+    </Container>
+  </Grommet>
 );
 
 export default App;

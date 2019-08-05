@@ -1,7 +1,7 @@
 import { css } from 'styled-components';
 
-export const desktopOnly = rules => css`
+export const desktopCss = (...args) => css`
   @media screen and (min-width: 768px) {
-    ${rules}
+    ${css(...args)}
   }
 `;
