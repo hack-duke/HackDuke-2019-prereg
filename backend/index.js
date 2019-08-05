@@ -26,18 +26,25 @@ app.post('/signup', (req, res) => {
 
   if (firstName === '') {
     res.json({
+      success: false,
       status: 'The name you submitted was invalid. Please try again.'
     });
     return;
   }
 
   if (!req.body.email || !EmailValidator.validate(req.body.email)) {
-    res.json({ status: 'The submitted email was invalid. Please try again.' });
+    res.json({
+      success: false,
+      status: 'The submitted email was invalid. Please try again.'
+    });
     return;
   }
 
   if (!req.body.university || req.body.university.length < 8) {
-    res.json({ status: 'The submitted university was invalid.' });
+    res.json({
+      success: false,
+      status: 'The submitted university was invalid.'
+    });
     return;
   }
 
@@ -67,10 +74,12 @@ app.post('/signup', (req, res) => {
       if (!response) {
         if (err) console.log(err);
         res.json({
+          success: false,
           status: 'An unknown error occurred. Please refresh and try again.'
         });
       } else if (response.status < 300) {
         res.json({
+          success: true,
           status:
             'Thank you for pre-registering! Please check your inbox for a confirmation email.'
         });
@@ -78,18 +87,20 @@ app.post('/signup', (req, res) => {
         response.status === 400 &&
         response.body.title === 'Member Exists'
       ) {
-        res.json({ status: 'You have already pre-registered!' });
+        res.json({ success: true, status: 'You have already pre-registered!' });
       } else if (
         response.status === 400 &&
         response.body.title === 'Invalid Resource'
       ) {
         res.json({
+          success: false,
           status:
             "That email address doesn't look real. Please refresh and try again."
         });
       } else {
         if (err) console.log(err);
         res.json({
+          success: false,
           status: 'An unknown error occurred. Please refresh and try again.'
         });
       }
