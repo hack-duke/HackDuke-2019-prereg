@@ -1,7 +1,7 @@
 import React from 'react';
 import styled, { css } from 'styled-components';
 import Form from './Form.jsx';
-import { MLHBadge } from './mlh-badge';
+import { MLHBadge } from './MLHBadge';
 import { desktopOnly } from './utils.jsx';
 import hourglass2 from './hourglass2.png';
 
@@ -35,7 +35,6 @@ const HourglassImage = styled.img.attrs({ src: hourglass2 })`
 const App = () => (
   <>
     <MLHBadge />
-
     <Container>
       <HourglassImage />
       <Form />
