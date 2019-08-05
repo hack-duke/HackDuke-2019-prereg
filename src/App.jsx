@@ -1,7 +1,7 @@
 import React from 'react';
 import Header from './Header.jsx';
 import styled, { css } from 'styled-components';
-import HackDukeLogo from './hourglass.png';
+import HackDukeLogo from './hourglass.svg';
 import Form from './Form.jsx';
 import TrustBadgeImage from './mlh-trust-badge-2020-white.svg';
 import { desktopOnly } from './utils.jsx';
