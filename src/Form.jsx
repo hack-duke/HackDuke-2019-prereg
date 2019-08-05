@@ -17,10 +17,10 @@ const Form = () => {
         HackDuke
       </Heading>
       <Paragraph size="large">Code for Good with us at Durham, NC</Paragraph>
-      <Paragraph size="large" margin={{ bottom: 'small' }}>
+      <Paragraph size="large" margin={{ bottom: 'medium' }}>
         November 2-3rd, 2019
       </Paragraph>
-      <Box background="white" pad="small" round="small" responsive={false}>
+      <Box background="white" pad="small" round="medium" responsive={false} elevation="medium">
         <FormField label="Name">
           <TextInput
             placeholder="First Last"
