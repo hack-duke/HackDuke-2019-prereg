@@ -1,10 +1,10 @@
+import { Box, Grommet, Heading, Paragraph } from 'grommet';
 import React from 'react';
-import styled, { css } from 'styled-components';
+import styled from 'styled-components';
 import Form from './Form.jsx';
+import hourglass2 from './hourglass2.png';
 import { MLHBadge } from './MLHBadge';
 import { desktopCss } from './utils.jsx';
-import hourglass2 from './hourglass2.png';
-import { Grommet } from 'grommet';
 
 const Container = styled.div`
   padding: 36px;
@@ -47,7 +47,17 @@ const App = () => (
     <MLHBadge />
     <Container>
       <HourglassImage />
-      <Form />
+      <Box>
+        <Heading level={1} size="large" margin={{ bottom: 'small' }}>
+          HackDuke
+        </Heading>
+        <Paragraph size="large">Code for Good with us in Durham, NC</Paragraph>
+        <Paragraph size="large" margin={{ bottom: 'medium' }}>
+          November 2-3rd, 2019
+        </Paragraph>
+
+        <Form />
+      </Box>
     </Container>
   </Grommet>
 );
