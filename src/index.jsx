@@ -15,7 +15,7 @@ html {
 }
 
 body {
-    font-family: 'Open Sans', sans-serif;
+    font-family: 'Karla', sans-serif;
     margin: 0;
     background: linear-gradient(0deg, #d9ccd6, #ffd6ba);
 }
