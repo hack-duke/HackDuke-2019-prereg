@@ -11,13 +11,13 @@ const Container = styled.div`
   height: 100%;
   justify-content: space-between;
   align-items: center;
-  max-width: 760px;
+  max-width: 780px;
   margin: 0 auto;
 `;
 
 const HourglassImage = styled.img.attrs({ src: hourglass2 })`
   max-height: 540px;
-  margin-right: 40px;
+  margin-right: 64px;
 `;
 
 const App = () => (

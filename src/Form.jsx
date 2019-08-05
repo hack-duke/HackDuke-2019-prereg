@@ -31,11 +31,13 @@ const Form = () => {
 
   return (
     <FormOuter>
-      <Heading level={1} size="large">
+      <Heading level={1} size="large" margin={{ bottom: 'small' }}>
         HackDuke
       </Heading>
       <Paragraph size="large">Code for Good with us at Durham, NC</Paragraph>
-      <Paragraph size="large">November 2-3rd, 2019</Paragraph>
+      <Paragraph size="large" margin={{ bottom: 'small' }}>
+        November 2-3rd, 2019
+      </Paragraph>
       <FormInputGroup>
         <FormField label="Name">
           <TextInput
@@ -63,17 +65,16 @@ const Form = () => {
             onSelect={e => setSchool(e.suggestion)}
           />
         </FormField>
+        <Button
+          disabled={!isValid}
+          label="NOTIFY ME"
+          primary={true}
+          type="submit"
+          fill="horizontal"
+          margin={{ top: 'small' }}
+          color="#5052FF"
+        />
       </FormInputGroup>
-
-      <Button
-        disabled={!isValid}
-        label="NOTIFY ME"
-        primary={true}
-        type="submit"
-        fill="horizontal"
-        margin={{ top: 'small' }}
-        color="#5052FF"
-      />
     </FormOuter>
   );
 };
