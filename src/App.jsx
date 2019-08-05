@@ -25,7 +25,7 @@ const LogoOuter = styled.div`
 
 const LogoImage = styled.img`
   width: 50%;
-  height: 350px;
+  height: 375px;
   width: auto;
   position: absolute;
 
