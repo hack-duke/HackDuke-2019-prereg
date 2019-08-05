@@ -16,6 +16,7 @@ app.use(cors());
 // api var initialize
 const mailchimpInstance = process.env.MC_INSTANCE_ID;
 const listUniqueId = process.env.MC_LIST_ID;
+const mailchimpUsername = process.env.MC_USERNAME;
 const mailchimpApiKey = process.env.MC_API_KEY;
 
 app.get('/ping', (req, res) => res.sendStatus(200));
@@ -52,10 +53,7 @@ app.post('/signup', (req, res) => {
         '/members/'
     )
     .set('Content-Type', 'application/json;charset=utf-8')
-    .set(
-      'Authorization',
-      'Basic ' + Buffer.from('any:' + mailchimpApiKey).toString('base64')
-    )
+    .auth(mailchimpUsername, mailchimpApiKey)
     .send({
       email_address: req.body.email,
       status: 'pending',
