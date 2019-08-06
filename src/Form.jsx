@@ -16,7 +16,7 @@ import styled, { css } from 'styled-components';
 import { StatusGood, StatusWarning } from 'grommet-icons';
 import { desktopCss } from './utils';
 
-const TransitionedBox = styled(Box)`
+const TransitionedBox = styled(Box).attrs({ responsive: false, pad: 'medium' })`
   transform: scale(1);
   opacity: 1;
   transition: opacity 0.15s, transform 0.15s;
@@ -100,8 +100,6 @@ const Form = () => {
         background="white"
         round="small"
         elevation="medium"
-        responsive={false}
-        pad="medium"
         css={css`
           position: relative;
         `}
