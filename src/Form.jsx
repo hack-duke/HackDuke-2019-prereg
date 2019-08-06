@@ -5,14 +5,17 @@ import { useDebounce } from 'use-debounce';
 import { Spinner } from './Spinner';
 import { getUniversitySuggestions, isUniversity } from './university-util';
 import styled, { css } from 'styled-components';
+import { StatusGood, StatusWarning } from 'grommet-icons';
 
 const TransitionedBox = styled(Box)`
+  transform: scale(1.0);
   opacity: 1;
-  transition: opacity 0.25s;
+  transition: opacity 0.15s, transform 0.15s;
 
   ${({ hidden }) =>
     hidden &&
     css`
+      transform: scale(0.95);
       opacity: 0;
       pointer-events: none;
       z-index: 999;
@@ -24,7 +27,7 @@ const mockSubmit = async (name, email, school) =>
     setTimeout(
       () =>
         resolve(
-          true
+          false
             ? {
                 success: true,
                 status:
@@ -53,7 +56,16 @@ const Form = () => {
   const onSubmit = async () => {
     setSubmitting(true);
     setResult(await mockSubmit(name, email, school));
+  };
+
+  const onCloseResult = () => {
+    if (result.success) {
+      setName('');
+      setEmail('');
+      setSchool('');
+    }
     setSubmitting(false);
+    setResult(undefined);
   };
 
   return (
@@ -120,7 +132,31 @@ const Form = () => {
           position: absolute;
         `}
       >
-        {JSON.stringify(result)}
+        {result && (
+          <>
+            <Box margin={{ vertical: 'auto' }} align="center">
+              {result.success ? (
+                <StatusGood size="72px" color="status-ok" />
+              ) : (
+                <StatusWarning size="72px" color="status-warning" />
+              )}
+              <Text
+                color="dark-1"
+                textAlign="center"
+                margin={{ top: 'medium' }}
+              >
+                {result.status}
+              </Text>
+            </Box>
+            <Button
+            color="light-6"
+              label={result.success ? 'CLOSE' : 'GO BACK'}
+              onClick={onCloseResult}
+              type="submit"
+              fill="horizontal"
+            />
+          </>
+        )}
       </TransitionedBox>
     </Box>
   );

@@ -39,7 +39,7 @@ const App = () => (
     theme={{
       global: {
         edgeSize: { medium: '18px' },
-        colors: { focus: '#5356fe', brand: '#5356fe' }
+        colors: { focus: '#5356fe', brand: '#5356fe', 'light-6': '#cccccc' }
       },
       button: { padding: { vertical: '8px' }, border: { radius: '8px' } }
     }}

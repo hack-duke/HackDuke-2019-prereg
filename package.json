@@ -13,6 +13,7 @@
     "autosuggest-trie": "^2.1.1",
     "email-validator": "^2.0.4",
     "grommet": "^2.7.4",
+    "grommet-icons": "^4.2.0",
     "parcel-bundler": "^1.12.3",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
