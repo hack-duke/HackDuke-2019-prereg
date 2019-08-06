@@ -51,9 +51,9 @@ const App = () => (
         <Heading level={1} size="large" margin={{ bottom: 'small' }}>
           HackDuke
         </Heading>
-        <Paragraph size="large">Code for Good with us in Durham, NC</Paragraph>
+        <Paragraph size="large">Code for Good in Durham, NC</Paragraph>
         <Paragraph size="large" margin={{ bottom: 'medium' }}>
-          November 2-3rd, 2019
+          November 2-3, 2019
         </Paragraph>
 
         <Form />
