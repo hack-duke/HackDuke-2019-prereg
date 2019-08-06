@@ -39,7 +39,13 @@ const App = () => (
     theme={{
       global: {
         edgeSize: { medium: '18px' },
-        colors: { focus: '#5356fe', brand: '#5356fe', 'light-6': '#cccccc' }
+        colors: {
+          focus: '#5356fe',
+          brand: '#5356fe',
+          'light-6': '#cccccc',
+          'status-ok': '#2b9b99',
+          'status-warning': '#ffa500'
+        }
       },
       button: { padding: { vertical: '8px' }, border: { radius: '8px' } }
     }}
@@ -55,7 +61,6 @@ const App = () => (
         <Paragraph size="large" margin={{ bottom: 'medium' }}>
           November 2-3, 2019
         </Paragraph>
-
         <Form />
       </Text>
     </Container>
