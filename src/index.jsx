@@ -1,14 +1,9 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import App from './App.jsx';
 import { createGlobalStyle } from 'styled-components';
-import Typography from 'typography';
+import App from './App.jsx';
 
 const GlobalStyle = createGlobalStyle`
-html {
-    box-sizing: border-box;
-}
-
 *,
 *:before,
 *:after {
@@ -16,13 +11,38 @@ html {
 }
 
 body {
-    font-family: 'Open Sans', sans-serif;
-    background: #FECA7D;
+    font-family: 'Karla', sans-serif;
     margin: 0;
 }
 
-html, body, #root {
-  height: 100%;
+html {    
+  box-sizing: border-box;
+  background: linear-gradient(0deg, #d9ccd6, #ffd6ba);
+}
+
+body,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+ol,
+ul {
+  margin: 0;
+  padding: 0;
+  font-weight: normal;
+}
+
+ol,
+ul {
+  list-style: none;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
 }
 `;
 

@@ -1,25 +1,34 @@
 import { validate } from 'email-validator';
-import { Button, FormField, Heading, Paragraph, TextInput } from 'grommet';
-import React, { useMemo, useState } from 'react';
-import styled, { css } from 'styled-components';
+import {
+  Box,
+  Button,
+  FormField,
+  Text,
+  TextInput,
+  Heading,
+  Paragraph
+} from 'grommet';
+import React, { useMemo, useState, useCallback } from 'react';
 import { useDebounce } from 'use-debounce';
-import { getUniversitySuggestions, isUniversity } from './university-util.js';
-import { desktopOnly } from './utils.jsx';
+import { Spinner } from './Spinner';
+import { getUniversitySuggestions, isUniversity } from './university-util';
+import styled, { css } from 'styled-components';
+import { StatusGood, StatusWarning } from 'grommet-icons';
+import { desktopCss } from './utils';
 
-const FormOuter = styled.div``;
+const TransitionedBox = styled(Box).attrs({ responsive: false, pad: 'medium' })`
+  transform: scale(1);
+  opacity: 1;
+  transition: opacity 0.15s, transform 0.15s;
 
-const FormInputGroup = styled.div`
-  background: white;
-  border-radius: 8px;
-  padding: 10px;
-  margin-top: 0%;
-  box-shadow: 0px 20px 40px rgba(0, 0, 0, 0.05);
-
-  ${desktopOnly(css`
-    flex: 1;
-    margin-left: 0px;
-    margin-top: 0;
-  `)}
+  ${({ hidden }) =>
+    hidden &&
+    css`
+      transform: scale(0.95);
+      opacity: 0;
+      pointer-events: none;
+      z-index: 999;
+    `}
 `;
 
 const Form = () => {
@@ -29,53 +38,154 @@ const Form = () => {
   const [debouncedSchool] = useDebounce(school, 50, { maxWait: 250 });
   const isValid = name.length >= 3 && validate(email) && isUniversity(school);
 
+  const [submitting, setSubmitting] = useState(false);
+  const [result, setResult] = useState();
+
+  const onSubmit = async () => {
+    setSubmitting(true);
+
+    let result;
+    try {
+      const fetchResult = await window.fetch(
+        'https://prereg.hackduke.org/signup',
+        {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({ name, university: school, email })
+        }
+      );
+      result = await fetchResult.json();
+    } catch (e) {
+      result = {
+        success: false,
+        status: 'An unknown error occurred. Please refresh and try again.'
+      };
+    }
+
+    setResult(result);
+  };
+
+  const onCloseResult = () => {
+    if (result.success) {
+      setName('');
+      setEmail('');
+      setSchool('');
+    }
+    setSubmitting(false);
+    setResult(undefined);
+  };
+
   return (
-    <FormOuter>
-      <Heading level={1} size="large" margin={{ bottom: 'small' }}>
-        HackDuke
-      </Heading>
-      <Paragraph size="large">Code for Good with us at Durham, NC</Paragraph>
-      <Paragraph size="large" margin={{ bottom: 'small' }}>
-        November 2-3rd, 2019
-      </Paragraph>
-      <FormInputGroup>
-        <FormField label="Name">
-          <TextInput
-            placeholder="First Last"
-            value={name}
-            onChange={e => setName(e.target.value)}
+    <Box
+      css={css`
+        width: 100%;
+
+        ${desktopCss`
+          width: initial;
+        `}
+      `}
+    >
+      <Text color="dark-1">
+        <Heading level={1} size="large" margin={{ bottom: 'small' }}>
+          HackDuke
+        </Heading>
+        <Paragraph size="large">Code for Good in Durham, NC</Paragraph>
+        <Paragraph size="large" margin={{ bottom: 'medium' }}>
+          November 2-3, 2019
+        </Paragraph>
+      </Text>
+      <Box
+        background="white"
+        round="small"
+        elevation="medium"
+        css={css`
+          position: relative;
+        `}
+      >
+        <TransitionedBox hidden={!!result}>
+          <FormField label="Name">
+            <TextInput
+              placeholder="First Last"
+              value={name}
+              onChange={e => setName(e.target.value)}
+            />
+          </FormField>
+          <FormField label="Email">
+            <TextInput
+              placeholder="me@example.com"
+              value={email}
+              type="email"
+              onChange={e => setEmail(e.target.value)}
+            />
+          </FormField>
+          <FormField label="School">
+            <TextInput
+              placeholder="Duke University"
+              suggestions={useMemo(
+                () => getUniversitySuggestions(debouncedSchool),
+                [debouncedSchool]
+              )}
+              value={school}
+              onChange={e => setSchool(e.target.value)}
+              onSelect={e => setSchool(e.suggestion)}
+            />
+          </FormField>
+          <Button
+            disabled={!isValid || submitting}
+            label={
+              submitting ? (
+                <Box direction="row" gap="xsmall" justify="center">
+                  <Spinner /> <Text size="medium"> SUBMITTING... </Text>
+                </Box>
+              ) : (
+                'NOTIFY ME'
+              )
+            }
+            onClick={onSubmit}
+            primary={true}
+            type="submit"
+            fill="horizontal"
+            margin={{ top: 'small' }}
           />
-        </FormField>
-        <FormField label="Email">
-          <TextInput
-            placeholder="me@example.com"
-            value={email}
-            onChange={e => setEmail(e.target.value)}
-          />
-        </FormField>
-        <FormField label="School">
-          <TextInput
-            placeholder="Duke University"
-            suggestions={useMemo(
-              () => getUniversitySuggestions(debouncedSchool),
-              [debouncedSchool]
-            )}
-            value={school}
-            onChange={e => setSchool(e.target.value)}
-            onSelect={e => setSchool(e.suggestion)}
-          />
-        </FormField>
-        <Button
-          disabled={!isValid}
-          label="NOTIFY ME"
-          primary={true}
-          type="submit"
-          fill="horizontal"
-          margin={{ top: 'small' }}
-          color="#5052FF"
-        />
-      </FormInputGroup>
-    </FormOuter>
+        </TransitionedBox>
+        <TransitionedBox
+          hidden={!result}
+          height="100%"
+          width="100%"
+          css={css`
+            position: absolute;
+          `}
+        >
+          {result && (
+            <>
+              <Box margin={{ vertical: 'auto' }} align="center">
+                {result.success ? (
+                  <StatusGood size="72px" color="status-ok" />
+                ) : (
+                  <StatusWarning size="72px" color="status-warning" />
+                )}
+                <Text
+                  color="dark-1"
+                  textAlign="center"
+                  margin={{ top: 'medium' }}
+                >
+                  {result.status}
+                </Text>
+              </Box>
+              <Button
+                color="light-6"
+                label={result.success ? 'CLOSE' : 'GO BACK'}
+                onClick={onCloseResult}
+                type="submit"
+                fill="horizontal"
+              />
+            </>
+          )}
+        </TransitionedBox>
+      </Box>
+    </Box>
   );
 };
 

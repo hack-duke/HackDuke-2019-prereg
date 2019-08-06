@@ -7,9 +7,9 @@ const MLHWrapper = styled.img`
   max-width: 100px;
   min-width: 60px;
   position: fixed;
-  right: 50px;
+  right: 36px;
   top: 0;
-  width: 10%;
+  width: 8%;
   z-index: 10000;
 `;
 
