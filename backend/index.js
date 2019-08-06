@@ -81,7 +81,7 @@ app.post('/signup', (req, res) => {
         res.json({
           success: true,
           status:
-            'Thank you for pre-registering! Please check your inbox for a confirmation email.'
+            'Thanks for pre-registering! Please check your inbox for a confirmation email.'
         });
       } else if (
         response.status === 400 &&
@@ -94,8 +94,7 @@ app.post('/signup', (req, res) => {
       ) {
         res.json({
           success: false,
-          status:
-            "That email address doesn't look real. Please refresh and try again."
+          status: "That email address doesn't look real. Please try again."
         });
       } else {
         if (err) console.log(err);
