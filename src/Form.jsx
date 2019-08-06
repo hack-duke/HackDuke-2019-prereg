@@ -72,13 +72,12 @@ const Form = () => {
     <Box
       background="white"
       round="small"
-      responsive={false}
       elevation="medium"
       css={css`
         position: relative;
       `}
     >
-      <TransitionedBox pad="medium" hidden={!!result}>
+      <TransitionedBox pad="medium" hidden={!!result} responsive={false}>
         <FormField label="Name">
           <TextInput
             placeholder="First Last"
@@ -129,6 +128,7 @@ const Form = () => {
         hidden={!result}
         height="100%"
         width="100%"
+        responsive={false}
         css={css`
           position: absolute;
         `}

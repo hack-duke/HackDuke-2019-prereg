@@ -9,7 +9,7 @@ import { desktopCss } from './utils.jsx';
 const Container = styled.div`
   padding: 36px;
   display: flex;
-  min-height: 100%;
+  min-height: 100vh;
   max-width: 800px;
   margin: 0 auto;
   flex-direction: column;
@@ -35,7 +35,6 @@ const HourglassImage = styled.img.attrs({ src: hourglass2 })`
 
 const App = () => (
   <Grommet
-    full
     theme={{
       global: {
         edgeSize: { medium: '18px' },
