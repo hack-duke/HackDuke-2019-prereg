@@ -1,9 +1,9 @@
 import { validate } from 'email-validator';
-import { Box, Button, FormField, TextInput, Text } from 'grommet';
+import { Box, Button, FormField, Text, TextInput } from 'grommet';
 import React, { useMemo, useState } from 'react';
 import { useDebounce } from 'use-debounce';
-import { getUniversitySuggestions, isUniversity } from './university-util';
 import { Spinner } from './Spinner';
+import { getUniversitySuggestions, isUniversity } from './university-util';
 
 const Form = () => {
   const [name, setName] = useState('');

@@ -1,4 +1,4 @@
-import { Box, Grommet, Heading, Paragraph } from 'grommet';
+import { Grommet, Heading, Paragraph, Text } from 'grommet';
 import React from 'react';
 import styled from 'styled-components';
 import Form from './Form.jsx';
@@ -47,7 +47,7 @@ const App = () => (
     <MLHBadge />
     <Container>
       <HourglassImage />
-      <Box>
+      <Text color="dark-1">
         <Heading level={1} size="large" margin={{ bottom: 'small' }}>
           HackDuke
         </Heading>
@@ -57,7 +57,7 @@ const App = () => (
         </Paragraph>
 
         <Form />
-      </Box>
+      </Text>
     </Container>
   </Grommet>
 );
