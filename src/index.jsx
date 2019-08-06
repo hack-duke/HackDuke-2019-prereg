@@ -4,10 +4,6 @@ import { createGlobalStyle } from 'styled-components';
 import App from './App.jsx';
 
 const GlobalStyle = createGlobalStyle`
-html {
-    box-sizing: border-box;
-}
-
 *,
 *:before,
 *:after {
@@ -17,16 +13,11 @@ html {
 body {
     font-family: 'Karla', sans-serif;
     margin: 0;
-    background: linear-gradient(0deg, #d9ccd6, #ffd6ba);
 }
 
-html, body, #root {
-  height: 100%;
-}
-
-html {
+html {    
   box-sizing: border-box;
-  font-size: 16px;
+  background: linear-gradient(0deg, #d9ccd6, #ffd6ba);
 }
 
 body,
