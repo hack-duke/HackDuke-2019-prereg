@@ -8,7 +8,7 @@ import styled, { css } from 'styled-components';
 import { StatusGood, StatusWarning } from 'grommet-icons';
 
 const TransitionedBox = styled(Box)`
-  transform: scale(1.0);
+  transform: scale(1);
   opacity: 1;
   transition: opacity 0.15s, transform 0.15s;
 
@@ -22,27 +22,6 @@ const TransitionedBox = styled(Box)`
     `}
 `;
 
-const mockSubmit = async (name, email, school) =>
-  new Promise(resolve =>
-    setTimeout(
-      () =>
-        resolve(
-          false
-            ? {
-                success: true,
-                status:
-                  'Thank you for pre-registering! Please check your inbox for a confirmation email.'
-              }
-            : {
-                success: false,
-                status:
-                  "That email address doesn't look real. Please refresh and try again."
-              }
-        ),
-      1000
-    )
-  );
-
 const Form = () => {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
@@ -55,7 +34,28 @@ const Form = () => {
 
   const onSubmit = async () => {
     setSubmitting(true);
-    setResult(await mockSubmit(name, email, school));
+
+    let result;
+    try {
+      const fetchResult = await window.fetch(
+        'https://prereg.hackduke.org/signup',
+        {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({ name, university: school, email })
+        }
+      );
+      result = await fetchResult.json();
+    } catch (e) {
+      result = {
+        success: false,
+        status: 'An unknown error occurred. Please refresh and try again.'
+      };
+    }
+
+    setResult(result);
   };
 
   const onCloseResult = () => {
@@ -128,6 +128,7 @@ const Form = () => {
         pad="medium"
         hidden={!result}
         height="100%"
+        width="100%"
         css={css`
           position: absolute;
         `}
@@ -149,7 +150,7 @@ const Form = () => {
               </Text>
             </Box>
             <Button
-            color="light-6"
+              color="light-6"
               label={result.success ? 'CLOSE' : 'GO BACK'}
               onClick={onCloseResult}
               type="submit"
