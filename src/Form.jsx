@@ -5,6 +5,27 @@ import { useDebounce } from 'use-debounce';
 import { Spinner } from './Spinner';
 import { getUniversitySuggestions, isUniversity } from './university-util';
 
+const mockSubmit = async ( name, email, school ) =>
+  new Promise(resolve =>
+    setTimeout(
+      () =>
+        resolve(
+          true
+            ? {
+                success: true,
+                status:
+                  'Thank you for pre-registering! Please check your inbox for a confirmation email.'
+              }
+            : {
+                success: false,
+                status:
+                  "That email address doesn't look real. Please refresh and try again."
+              }
+        ),
+      1000
+    )
+  );
+
 const Form = () => {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
@@ -13,6 +34,7 @@ const Form = () => {
   const isValid = name.length >= 3 && validate(email) && isUniversity(school);
 
   const [submitting, setSubmitting] = useState(false);
+  const [result, setResult] = useState();
 
   return (
     <Box
