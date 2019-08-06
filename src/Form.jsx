@@ -1,11 +1,20 @@
 import { validate } from 'email-validator';
-import { Box, Button, FormField, Text, TextInput } from 'grommet';
+import {
+  Box,
+  Button,
+  FormField,
+  Text,
+  TextInput,
+  Heading,
+  Paragraph
+} from 'grommet';
 import React, { useMemo, useState, useCallback } from 'react';
 import { useDebounce } from 'use-debounce';
 import { Spinner } from './Spinner';
 import { getUniversitySuggestions, isUniversity } from './university-util';
 import styled, { css } from 'styled-components';
 import { StatusGood, StatusWarning } from 'grommet-icons';
+import { desktopCss } from './utils';
 
 const TransitionedBox = styled(Box)`
   transform: scale(1);
@@ -70,95 +79,114 @@ const Form = () => {
 
   return (
     <Box
-      background="white"
-      round="small"
-      elevation="medium"
       css={css`
-        position: relative;
+        width: 100%;
+
+        ${desktopCss`
+          width: initial;
+        `}
       `}
     >
-      <TransitionedBox pad="medium" hidden={!!result} responsive={false}>
-        <FormField label="Name">
-          <TextInput
-            placeholder="First Last"
-            value={name}
-            onChange={e => setName(e.target.value)}
-          />
-        </FormField>
-        <FormField label="Email">
-          <TextInput
-            placeholder="me@example.com"
-            value={email}
-            type="email"
-            onChange={e => setEmail(e.target.value)}
-          />
-        </FormField>
-        <FormField label="School">
-          <TextInput
-            placeholder="Duke University"
-            suggestions={useMemo(
-              () => getUniversitySuggestions(debouncedSchool),
-              [debouncedSchool]
-            )}
-            value={school}
-            onChange={e => setSchool(e.target.value)}
-            onSelect={e => setSchool(e.suggestion)}
-          />
-        </FormField>
-        <Button
-          disabled={!isValid || submitting}
-          label={
-            submitting ? (
-              <Box direction="row" gap="xsmall" justify="center">
-                <Spinner /> <Text size="medium"> SUBMITTING... </Text>
-              </Box>
-            ) : (
-              'NOTIFY ME'
-            )
-          }
-          onClick={onSubmit}
-          primary={true}
-          type="submit"
-          fill="horizontal"
-          margin={{ top: 'small' }}
-        />
-      </TransitionedBox>
-      <TransitionedBox
-        pad="medium"
-        hidden={!result}
-        height="100%"
-        width="100%"
+      <Text color="dark-1">
+        <Heading level={1} size="large" margin={{ bottom: 'small' }}>
+          HackDuke
+        </Heading>
+        <Paragraph size="large">Code for Good in Durham, NC</Paragraph>
+        <Paragraph size="large" margin={{ bottom: 'medium' }}>
+          November 2-3, 2019
+        </Paragraph>
+      </Text>
+      <Box
+        background="white"
+        round="small"
+        elevation="medium"
         responsive={false}
+        pad="medium"
         css={css`
-          position: absolute;
+          position: relative;
         `}
       >
-        {result && (
-          <>
-            <Box margin={{ vertical: 'auto' }} align="center">
-              {result.success ? (
-                <StatusGood size="72px" color="status-ok" />
-              ) : (
-                <StatusWarning size="72px" color="status-warning" />
-              )}
-              <Text
-                color="dark-1"
-                textAlign="center"
-                margin={{ top: 'medium' }}
-              >
-                {result.status}
-              </Text>
-            </Box>
-            <Button
-              color="light-6"
-              label={result.success ? 'CLOSE' : 'GO BACK'}
-              onClick={onCloseResult}
-              type="submit"
-              fill="horizontal"
+        <TransitionedBox hidden={!!result}>
+          <FormField label="Name">
+            <TextInput
+              placeholder="First Last"
+              value={name}
+              onChange={e => setName(e.target.value)}
             />
-          </>
-        )}
-      </TransitionedBox>
+          </FormField>
+          <FormField label="Email">
+            <TextInput
+              placeholder="me@example.com"
+              value={email}
+              type="email"
+              onChange={e => setEmail(e.target.value)}
+            />
+          </FormField>
+          <FormField label="School">
+            <TextInput
+              placeholder="Duke University"
+              suggestions={useMemo(
+                () => getUniversitySuggestions(debouncedSchool),
+                [debouncedSchool]
+              )}
+              value={school}
+              onChange={e => setSchool(e.target.value)}
+              onSelect={e => setSchool(e.suggestion)}
+            />
+          </FormField>
+          <Button
+            disabled={!isValid || submitting}
+            label={
+              submitting ? (
+                <Box direction="row" gap="xsmall" justify="center">
+                  <Spinner /> <Text size="medium"> SUBMITTING... </Text>
+                </Box>
+              ) : (
+                'NOTIFY ME'
+              )
+            }
+            onClick={onSubmit}
+            primary={true}
+            type="submit"
+            fill="horizontal"
+            margin={{ top: 'small' }}
+          />
+        </TransitionedBox>
+        <TransitionedBox
+          hidden={!result}
+          height="100%"
+          width="100%"
+          css={css`
+            position: absolute;
+          `}
+        >
+          {result && (
+            <>
+              <Box margin={{ vertical: 'auto' }} align="center">
+                {result.success ? (
+                  <StatusGood size="72px" color="status-ok" />
+                ) : (
+                  <StatusWarning size="72px" color="status-warning" />
+                )}
+                <Text
+                  color="dark-1"
+                  textAlign="center"
+                  margin={{ top: 'medium' }}
+                >
+                  {result.status}
+                </Text>
+              </Box>
+              <Button
+                color="light-6"
+                label={result.success ? 'CLOSE' : 'GO BACK'}
+                onClick={onCloseResult}
+                type="submit"
+                fill="horizontal"
+              />
+            </>
+          )}
+        </TransitionedBox>
+      </Box>
     </Box>
   );
 };

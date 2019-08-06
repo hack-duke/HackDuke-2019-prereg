@@ -52,16 +52,7 @@ const App = () => (
     <MLHBadge />
     <Container>
       <HourglassImage />
-      <Text color="dark-1">
-        <Heading level={1} size="large" margin={{ bottom: 'small' }}>
-          HackDuke
-        </Heading>
-        <Paragraph size="large">Code for Good in Durham, NC</Paragraph>
-        <Paragraph size="large" margin={{ bottom: 'medium' }}>
-          November 2-3, 2019
-        </Paragraph>
-        <Form />
-      </Text>
+      <Form />
     </Container>
   </Grommet>
 );
