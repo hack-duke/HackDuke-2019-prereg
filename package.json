@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "parcel index.html"
+    "start": "parcel index.html",
+    "build": "parcel build index.html"
   },
   "author": "",
   "license": "ISC",
@@ -15,30 +16,20 @@
     "compression": "^1.7.4",
     "cors": "^2.8.5",
     "email-validator": "^2.0.4",
-    "express": "^4.17.1",
-    "grommet": "^2.7.1",
-    "helmet": "^3.18.0",
+    "grommet": "^2.7.4",
+    "grommet-icons": "^4.2.0",
     "parcel-bundler": "^1.12.3",
     "raven": "^2.6.4",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
-    "styled-components": "^4.2.1",
-    "superagent": "^5.1.0",
-    "validator": "^11.1.0"
+    "styled-components": "^4.3.2",
+    "typography": "^0.16.19",
+    "use-debounce": "^2.2.0"
   },
   "devDependencies": {
     "@babel/core": "^7.4.5",
-    "@babel/plugin-proposal-class-properties": "^7.4.4",
-    "@babel/preset-env": "^7.4.5",
-    "@babel/preset-react": "^7.0.0"
-  },
-  "babel": {
-    "presets": [
-      "@babel/preset-env",
-      "@babel/preset-react"
-    ],
-    "plugins": [
-      "@babel/plugin-proposal-class-properties"
-    ]
+    "@babel/plugin-transform-runtime": "^7.5.5",
+    "@babel/preset-react": "^7.0.0",
+    "babel-plugin-styled-components": "^1.10.6"
   }
 }
