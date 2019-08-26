@@ -10,7 +10,7 @@ const Container = styled.div`
   padding: 36px;
   display: flex;
   min-height: 100vh;
-  max-width: 800px;
+  max-width: 850px;
   margin: 0 auto;
   flex-direction: column;
   align-items: center;
@@ -26,8 +26,8 @@ const HourglassImage = styled.img.attrs({ src: hourglass2 })`
   max-width: 144px;
 
   ${desktopCss`
-    margin-right: 68px;
-    max-height: 550px;
+    margin-right: 75px;
+    max-height: 650px;
     max-width: initial;
     margin-bottom: 0;
   `}
