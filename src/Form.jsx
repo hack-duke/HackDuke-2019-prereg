@@ -36,7 +36,8 @@ const Form = () => {
   const [email, setEmail] = useState('');
   const [school, setSchool] = useState('');
   const [debouncedSchool] = useDebounce(school, 50, { maxWait: 250 });
-  const isValid = name.length >= 3 && validate(email) && isUniversity(school);
+  const [year, setYear] = useState('');
+  const isValid = name.length >= 3 && validate(email) && isUniversity(school) && year.length >= 4;
 
   const [submitting, setSubmitting] = useState(false);
   const [result, setResult] = useState();
@@ -130,6 +131,13 @@ const Form = () => {
               value={school}
               onChange={e => setSchool(e.target.value)}
               onSelect={e => setSchool(e.suggestion)}
+            />
+          </FormField>
+          <FormField label="Year">
+            <TextInput
+              placeholder="2022"
+              value={year}
+              onChange={e => setYear(e.target.value)}
             />
           </FormField>
           <Button
