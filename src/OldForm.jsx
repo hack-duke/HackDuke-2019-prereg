@@ -124,7 +124,7 @@ const Form = () => {
         `}
       >
         <TransitionedBox hidden={!!result}>
-          
+
           <FormField label="Year">
             <TextInput
               placeholder="2022"
