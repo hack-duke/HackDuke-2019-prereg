@@ -1,3 +1,7 @@
+<<<<<<< Updated upstream
+=======
+import { Grommet, Heading, Paragraph, Text, Button } from 'grommet';
+>>>>>>> Stashed changes
 import React from 'react';
 
 import styled, { css } from 'styled-components';
@@ -46,9 +50,15 @@ const App = () => (
     <div>
       <Header />
       <Form />
+<<<<<<< Updated upstream
     </div>
 
   </Container>
+=======
+
+    </Container>
+  </Grommet>
+>>>>>>> Stashed changes
 );
 
 export default App;

@@ -27,6 +27,7 @@ const Form = () => {
   const [email, setEmail] = useState('');
   const [school, setSchool] = useState('');
   const [debouncedSchool] = useDebounce(school, 50, { maxWait: 250 });
+<<<<<<< Updated upstream
   const isValid = name.length >= 3 && validate(email) && isUniversity(school);
 
   return (
@@ -60,6 +61,15 @@ const Form = () => {
         </FormField>
 
       </FormOuter>
+=======
+  const [year, setYear] = useState('');
+  const isValid = name.length >= 3 && validate(email) && isUniversity(school) && year.length >= 4;
+
+  const [submitting, setSubmitting] = useState(false);
+  const [result, setResult] = useState();
+
+
+>>>>>>> Stashed changes
 
       <Button
         disabled={!isValid}
@@ -73,6 +83,48 @@ const Form = () => {
       />
     </div>
 
+<<<<<<< Updated upstream
+=======
+        ${desktopCss`
+          width: initial;
+        `}
+      `}
+    >
+      <Text color="dark-1">
+        <Heading level={1} size="large" margin={{ bottom: 'xxsmall' }}>
+          HackDuke
+        </Heading>
+        <Paragraph size="xxlarge" margin={{ bottom: 'medium' }}>
+          November 2-3, 2019
+        </Paragraph>
+        <Paragraph size="large" margin={{ bottom: 'small' }}>Come <b>Code for Good </b>
+         with us at Duke University (Durham, NC)!
+        Applications are open now until October 15.</Paragraph>
+      </Text>
+
+      <Button
+        label={
+          submitting ? (
+            <Box direction="row" gap="xsmall" justify="center">
+              <Spinner /> <Text size="medium"> LOADING... </Text>
+            </Box>
+          ) : (<b>
+            APPLY NOW ☛ ☛ ☛ </b>
+          )
+        }
+
+        href = "https://hackduke.typeform.com/to/i83hAq"
+        target = '_blank'
+        onClick={() => {}}
+        primary={true}
+        type="button"
+        fill="horizontal"
+        margin={{ top: 'small' }}
+      />
+
+
+    </Box>
+>>>>>>> Stashed changes
   );
 };
 
