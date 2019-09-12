@@ -89,110 +89,38 @@ const Form = () => {
       `}
     >
       <Text color="dark-1">
-        <Heading level={1} size="large" margin={{ bottom: 'small' }}>
+        <Heading level={1} size="large" margin={{ bottom: 'xxsmall' }}>
           HackDuke
         </Heading>
-        <Paragraph size="large">Code for Good in Durham, NC</Paragraph>
-        <Paragraph size="large" margin={{ bottom: 'medium' }}>
+        <Paragraph size="xxlarge" margin={{ bottom: 'medium' }}>
           November 2-3, 2019
         </Paragraph>
+        <Paragraph size="large" margin={{ bottom: 'small' }}>Come <b>Code for Good </b>
+         with us at Duke University (Durham, NC)!
+        Applications are open now until October 15.
+        </Paragraph>
       </Text>
-      <Box
-        background="white"
-        round="small"
-        elevation="medium"
-        css={css`
-          position: relative;
-        `}
-      >
-        <TransitionedBox hidden={!!result}>
-          <FormField label="Name">
-            <TextInput
-              placeholder="First Last"
-              value={name}
-              onChange={e => setName(e.target.value)}
-            />
-          </FormField>
-          <FormField label="Email">
-            <TextInput
-              placeholder="me@example.com"
-              value={email}
-              type="email"
-              onChange={e => setEmail(e.target.value)}
-            />
-          </FormField>
-          <FormField label="School">
-            <TextInput
-              placeholder="Duke University"
-              suggestions={useMemo(
-                () => getUniversitySuggestions(debouncedSchool),
-                [debouncedSchool]
-              )}
-              value={school}
-              onChange={e => setSchool(e.target.value)}
-              onSelect={e => setSchool(e.suggestion)}
-            />
-          </FormField>
-          <FormField label="Year">
-            <TextInput
-              placeholder="2022"
-              value={year}
-              onChange={e => setYear(e.target.value)}
-            />
-          </FormField>
-          <Button
-            disabled={!isValid || submitting}
-            label={
-              submitting ? (
-                <Box direction="row" gap="xsmall" justify="center">
-                  <Spinner /> <Text size="medium"> SUBMITTING... </Text>
-                </Box>
-              ) : (
-                'NOTIFY ME'
-              )
-            }
-            onClick={onSubmit}
-            primary={true}
-            type="submit"
-            fill="horizontal"
-            margin={{ top: 'small' }}
-          />
-        </TransitionedBox>
-        <TransitionedBox
-          hidden={!result}
-          height="100%"
-          width="100%"
-          css={css`
-            position: absolute;
-          `}
-        >
-          {result && (
-            <>
-              <Box margin={{ vertical: 'auto' }} align="center">
-                {result.success ? (
-                  <StatusGood size="72px" color="status-ok" />
-                ) : (
-                  <StatusWarning size="72px" color="status-warning" />
-                )}
-                <Text
-                  color="dark-1"
-                  textAlign="center"
-                  margin={{ top: 'medium' }}
-                >
-                  {result.status}
-                </Text>
-              </Box>
-              <Button
-                color="light-6"
-                label={result.success ? 'CLOSE' : 'GO BACK'}
-                onClick={onCloseResult}
-                type="submit"
-                fill="horizontal"
-              />
-            </>
-          )}
-        </TransitionedBox>
-      </Box>
+
+      <Button
+        label={
+          submitting ? (
+            <Box direction="row" gap="xsmall" justify="center">
+              <Spinner /> <Text size="medium"> LOADING... </Text>
+            </Box>
+          ) : (<b>
+            APPLY NOW ☛ ☛ ☛ </b>
+          )
+        }
+
+        href = "https://hackduke.typeform.com/to/i83hAq"
+        target = '_blank'
+        onClick={() => {}}
+        primary={true}
+        type="button"
+        fill="horizontal"
+        margin={{ top: 'small' }}
+      />
+
     </Box>
   );
 };
